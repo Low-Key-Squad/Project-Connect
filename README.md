@@ -4,11 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Open https://nodejs.org/en/ and download current version
  
-then run comend: 
+then in the folder of the project run command: ## npm install
 
-## npm install
-
-In the project directory, you can run:
+In the project directory, you can also run:
 
 ### `npm start`
 
