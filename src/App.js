@@ -1,14 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        
+        <Home />
        <button className="bg-black text-white text-3xl px-4 pt-2 hover:bg-blue-600 rounded"> button</button> 
-      </header>
     </div>
   );
 }
