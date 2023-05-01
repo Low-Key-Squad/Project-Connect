@@ -1,7 +1,7 @@
 import React from 'react';
 import StackNavigator from './StackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-//import { AuthProvider } from './hooks/useAuth';
+LogBox.ignoreAllLogs(); //Ignore log notification, for now
 
 export default function App() {
   return (
