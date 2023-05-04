@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Readex Pro', sans-serif;
+}
+
+.primary-title {
+    font-size: 90px;
+    color: rgb(255, 255, 255);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.primary-button {
+    color: rgb(255,255,255);
+    text-transform: uppercase;
+    font-size: 15px;
+    background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+}
+
+
+.primary-button:hover {
+    background: linear-gradient(260deg, rgb(254, 48, 114), rgb(255, 89, 64));
+    transform: scale(1.2);
+}
+
+.secondary-button {
+    color: rgb(121, 119, 119);
+    background-color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: solid 2px rgb(121, 119, 119);
+    margin: 6px;
+}
+
+.secondary-button:hover {
+    color: rgb(48, 48, 48);
+    border: solid 2px rgb(48, 48, 48);
+    transform: scale(1.2);
+}
+
+
+h2 {
+    font-style: italic;
+}
+
+
+/*Navbar styl*/
+
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+  
+  .nav-button {
+   
+    color: rgb(254, 48, 114);
+    background-color: rgb(255, 255, 255);
+    font-size: 36px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  nav .nav-button:disabled {
+    background-color: rgb(181, 180, 180);
+    color: rgb(189, 42, 90);
+}
+
+nav .logo-container .logo {
+    width: 45%;
+}
+
+nav .logo-container {
+    margin: 1px;
+}
+
+
+/*Home*/
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+    )
+}
+
+.home {
+    margin-top: 5vh;
+}
+
+
+.logo-container {
+    height: 60%;
+}
