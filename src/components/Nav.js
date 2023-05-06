@@ -8,6 +8,8 @@ const Nav = ({ authToken, minimal, setShowModal, showModal, setIsSignUp   }) => 
       setShowModal(true)
       setIsSignUp(false)
     }
+
+    const authToken = false
   
     return (
       <nav>
