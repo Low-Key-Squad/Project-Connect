@@ -2,7 +2,7 @@ import logo from '../images/logo.png'
 import colorLogo from '../images/smallRed.png'
 
 
-const Nav = ({ authToken, minimal, setShowModal, showModal, setIsSignUp   }) => {
+const Nav = ({  minimal, setShowModal, showModal, setIsSignUp   }) => {
     
     const handleClick = () => {
       setShowModal(true)
