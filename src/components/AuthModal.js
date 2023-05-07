@@ -11,7 +11,7 @@ const AuthModal = ({setShowModal, isSignUp}) => {
         setShowModal(false)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             if (isSignUp && (password !== confirmPassword)) {
