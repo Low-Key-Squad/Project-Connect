@@ -1,5 +1,6 @@
 import logo from '../images/logo.png'
 import colorLogo from '../images/smallRed.png'
+import React from 'react';
 
 
 const Nav = ({  minimal, setShowModal, showModal, setIsSignUp   }) => {
