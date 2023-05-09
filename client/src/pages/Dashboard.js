@@ -6,25 +6,28 @@ import React from "react"
 const characters = [
     {
       name: 'Richard Hendricks',
-      url: '\src\images\Gg6BpGn_d.webp'
+      url: '/src/images/Gg6BpGn_d.webp'
     },
     {
       name: 'Erlich Bachman',
-      url: '\src\images\Gg6BpGn_d.webp' /*trzeba pododawać resztę zdjęć*/ 
+      url: '/src/images/Gg6BpGn_d.webp' /*trzeba pododawać resztę zdjęć*/ 
     },
     {
       name: 'Monica Hall',
-      url: '\src\images\Gg6BpGn_d.webp'
+      url: '/src/images/Gg6BpGn_d.webp'
     },
     {
       name: 'Jared Dunn',
-      url: '\src\images\Gg6BpGn_d.webp'
+      url: '/src/images/Gg6BpGn_d.webp'
     },
     {
       name: 'Dinesh Chugtai',
-      url: '\src\images\Gg6BpGn_d.webp'
+      url: '/src/images/Gg6BpGn_d.webp'
     }
   ]
+
+const Dashboarding = () => {
+    
 const [lastDirection, setLastDirection] = useState()
 
 const swiped = (direction, nameToDelete) => {
@@ -35,8 +38,6 @@ const swiped = (direction, nameToDelete) => {
 const outOfFrame = (name) => {
     console.log(name + ' left the screen!')
 }
-
-const Dashboarding = () => {
     return (
         <div className="dashboard">
             <ChatContainer/>
