@@ -1,4 +1,7 @@
 import { useState } from "react"
+import React from "react"
+
+
 const ChatInput = () => {
     const [textArea, SetTextArea]=useState(null)
     return (
