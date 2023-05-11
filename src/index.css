@@ -269,10 +269,6 @@ nav .logo-container {
     text-align: left;
     z-index: 1;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 25cd5d2576a79c3edb77ffcfe15e2ea5e3e23820
 .chat-container .chat-container-header{
 background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
 height: 100px;
@@ -280,10 +276,6 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 25cd5d2576a79c3edb77ffcfe15e2ea5e3e23820
 .chat-container .option{
 border: none;
 background-color: rgb(255,255,255);
@@ -292,17 +284,18 @@ font-size: 20px;
 margin: 2px;
 padding: 10px;
 }
-<<<<<<< HEAD
 
 .chat-container .option:disabled{
     border-bottom: solid 4px rgb(187, 187, 187);
 }
 
-=======
 .chat-container .option:disabled{
     border-bottom: solid 4px rgb(187, 187, 187);
 }
->>>>>>> 25cd5d2576a79c3edb77ffcfe15e2ea5e3e23820
+
+.chat-container .option:disabled{
+    border-bottom: solid 4px rgb(187, 187, 187);
+}
 .chat-container .profile,
 .chat-container .log-out-icon{
     display: flex;
