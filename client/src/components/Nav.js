@@ -3,14 +3,13 @@ import colorLogo from '../images/smallRed.png'
 import React from 'react';
 
 
-const Nav = ({  minimal, setShowModal, showModal, setIsSignUp   }) => {
+const Nav = ({  authToken, minimal, setShowModal, showModal, setIsSignUp   }) => {
     
     const handleClick = () => {
       setShowModal(true)
       setIsSignUp(false)
     }
 
-    const authToken = false
   
     return (
       <nav>
