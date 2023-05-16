@@ -18,7 +18,7 @@ export default function Menu() {
         <div className="buttons-menu">
         <Link to='/chat'><button className="Chat ">Chat</button></Link>
         <Link to='/swipe'><button className="Swipe ">Swipe</button></Link>
-        <Link to='/profile'><button className="Profile ">Profile</button></Link>
+        <Link to='/profile'><button className="Profile ">Set Profile</button></Link>
         </div>
         
                  

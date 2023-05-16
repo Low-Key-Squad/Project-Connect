@@ -150,8 +150,8 @@ export default function Swipe() {
         <form className="Form-Swipe" onSubmit={onSubmit}>
         <label>Show Me:</label>
         <br></br>
-        <label htmlFor="man-gender-interest">Man</label>
                     <div className="multiple-input-container">
+                    <label htmlFor="man-gender-interest">Man</label>
                     
                                 <input
                                   id="man-gender-interest"
