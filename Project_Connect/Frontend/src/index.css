@@ -643,6 +643,17 @@ button[name="send-message-button"] {
     border-style: groove;
     border-color: #000;
 }
+button[name="delete-button"] {
+  color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    background: linear-gradient(45deg, rgb(255, 1, 1), rgb(87, 6, 6));
+    padding: 12px 30px;
+    border-radius: 30px;
+    border-style: groove;
+    border-color: #000;
+}
 
 .profile-contet{
   padding: 30px;
@@ -656,4 +667,16 @@ button[name="send-message-button"] {
   left: 50%;
   transform: translate(-50%, -50%);
 
+}
+.Prof-swipe{
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  background-color: #FFE53B;
+  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+  position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 }

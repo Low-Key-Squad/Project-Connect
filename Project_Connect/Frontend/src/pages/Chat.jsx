@@ -171,7 +171,7 @@ export default function Chat() {
                   <input type="text" value={message} onChange={e => setMessage(e.target.value)} />
                   <button onClick={sendMessage} name="send-message-button">Wyślij</button>
                 </div>
-                <button onClick={deleteMatch}>Usuń parę</button>
+                <button name="delete-button" onClick={deleteMatch}>Usuń parę</button>
               </>
             )}
           </div>

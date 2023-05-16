@@ -230,7 +230,7 @@ export default function Swipe() {
         </form>)}
 
         {currentProfile && (
-        <div>
+        <div className="Prof-swipe">
           <h2>Profile</h2>
           <p>Name: {currentProfile.name}</p>
           <p>Age: {currentProfile.age}</p>
