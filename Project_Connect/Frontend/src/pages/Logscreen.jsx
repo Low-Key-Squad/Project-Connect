@@ -42,6 +42,7 @@ export default function Logscreen() {
 
     return (
       <>
+       <img src="/public/white.png" className="LogLogo"/>
         <div className="login-screen">
           <div className="Form-login">
           <Link to='/home'>
