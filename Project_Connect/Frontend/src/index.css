@@ -116,6 +116,17 @@ button:hover {
 
 /* login */
 
+
+
+.LogLogo{
+  width: 15%;
+  position: absolute;
+  top: 5%;
+  left: 90%;
+  transform: translateX(-55%);
+}
+
+
 .login-screen{
     display: flex;
     justify-content: center;
@@ -176,6 +187,8 @@ input {
     
 }
 
+
+
 /* Menu */
 
 .menu-container {
@@ -186,11 +199,11 @@ input {
   }
   
   .MenuLogo{
-    width: 20%;
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 15%;
+  position: absolute;
+  top: 5%;
+  left: 90%;
+  transform: translateX(-55%);
   }
 
 

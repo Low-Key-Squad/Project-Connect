@@ -45,6 +45,7 @@ export default function Singup() {
 
   return (
     <>
+    <img src="/public/white.png" className="LogLogo"/>
       <div className="login-screen">
           <div className="Form-SignUp">
           <Link to='/home'>
