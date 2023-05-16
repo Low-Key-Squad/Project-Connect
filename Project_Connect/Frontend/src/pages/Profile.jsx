@@ -67,7 +67,7 @@ export default function Profile() {
         <div>
         <Link to='/menu'><button className='Menu-button'>Menu</button></Link>
         </div>
-        <div className="profile">
+        <div className="profile-contet">
             <h2>Create Your Profile</h2>
 
             <form onSubmit={onSubmit} className="form-profile">

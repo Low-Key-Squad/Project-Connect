@@ -216,6 +216,7 @@ input {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    
   }
   
   .menu-button:hover {
@@ -276,6 +277,10 @@ input {
     margin-bottom: 30px;
     border-style: groove;
     border-color: #000;
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    transform: translateY(-50%);
   }
 
 
@@ -534,6 +539,11 @@ input {
     margin-bottom: 30px;
     border-style: groove;
     border-color: #000;
+    position: fixed;
+    top: 0%;
+    right: 10%;
+    transform: translateY(-50%);
+  
   }
 
 .buttons-menu {
@@ -570,15 +580,18 @@ input {
 
 /*ANDrzej tu się bawił -   chat*/
 div[name="CHAT"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
-  height: 70vh;
-  overflow: auto;
-  background-color: blue;
-  padding: 10px;
+  padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    background-color: #FFE53B;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+    
 }
 
 div[name="Chat-container"] {
@@ -596,17 +609,51 @@ div[name="logchat"] {
 }
 
 div[name="message"] {
-  margin-bottom: 10px;
+  color: rgb(255,255,255);
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 500;
+  background: linear-gradient(45deg, rgb(48, 254, 220), rgb(176, 224, 210));
+  padding: 12px 30px;
+  border-radius: 30px;
+  border-style: groove;
+  border-color: #000;
 }
 
 button[name="match-button"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: center;
+  color: rgb(255,255,255);
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
+    padding: 12px 30px;
+    border-radius: 30px;
+    border-style: groove;
+    border-color: #000;
 }
 
 button[name="send-message-button"] {
-  display: block;
-  margin-top: 10px;
+  color: rgb(3, 3, 3);
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    background: linear-gradient(45deg, rgb(96, 254, 48), rgb(64, 185, 255));
+    padding: 12px 30px;
+    border-radius: 30px;
+    border-style: groove;
+    border-color: #000;
+}
+
+.profile-contet{
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  background-color: #FFE53B;
+  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
