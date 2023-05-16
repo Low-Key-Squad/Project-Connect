@@ -11,6 +11,19 @@ export default function DefaultLayout() {
     .split("; ")
     .find((row) => row.startsWith("user_id="))
     ?.split("=")[1];
+    useEffect(() => {
+        if (userId) {
+            axiosClient
+            .get(`/name/${userId}`)
+            .then((response) => {
+                setUserName(response.data.name);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        }
+    }, [userId]);
+
 
         useEffect(() => {
             const interval = setInterval(() => {
@@ -48,14 +61,14 @@ export default function DefaultLayout() {
 
   return (
     <div id="defaulLayout">
-      <header>
+      
         <div>
-          <div>
+          <div className="User-Name">
             {userName && <p>Witaj, {userName}</p>}
           </div>
           <button href="#" onClick={onLogout} className="loguot">logout</button>
         </div>
-      </header>
+    
       <main>
         <Outlet />
       </main>

@@ -318,7 +318,8 @@ input {
   }
 
   #defaulLayout > main:nth-child(2) > form:nth-child(2) > label:nth-child(1){
-    color:white;
+    width: 10%;
+    color: black;
   }
 
   .multiple-input-container > input:nth-child(8){
@@ -527,4 +528,12 @@ input {
 
 .buttons-menu a button {
   cursor: pointer;
+}
+
+.User-Name {
+  width: 5%;
+  height: 2.5%;
+  background-color: #491188;
+  border-radius: 10px; 
+  border: 2px solid #3C0F61; 
 }
