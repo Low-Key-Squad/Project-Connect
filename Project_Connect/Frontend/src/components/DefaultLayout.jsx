@@ -1,44 +1,64 @@
 import { Link, Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
-
+import { useEffect, useState } from "react";
 
 export default function DefaultLayout() {
-const {user,token,setUser,setToken}=useStateContext()
+  const { user, token, setUser, setToken } = useStateContext();
+  const [userName, setUserName] = useState('');
 
+  const userId = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("user_id="))
+    ?.split("=")[1];
 
-if(!token){
-      return <Navigate to='/home'/>  
-}
-console.log(token);
-const onLogout=ev=>{
-ev.preventDefault()
+        useEffect(() => {
+            const interval = setInterval(() => {
+            if (userId) {
+                axiosClient
+                .get(`/name/${userId}`)
+                .then((response) => {
+                    setUserName(response.data.name);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            }
+            }, 5000); 
 
+            return () => clearInterval(interval); 
+        }, [userId]);
 
-axiosClient.post('/logout')
-.then(() =>{
-    setUser({}),
-    setToken(null)
-});
-
-
-}
-
-    return (
-        <div id="defaulLayout">
-            <header>
-                <div>
-                   
-                    <button href="#" onClick={onLogout} className="loguot">logout</button>
-                </div>
-            </header>
-            <main>   
-                <Outlet />
-            </main>
-       
-        </div>
-      
- 
-      
-    )
+  if (!token) {
+    return <Navigate to="/home" />;
   }
+
+  console.log(token);
+  console.log(userName)
+  const onLogout = (ev) => {
+    ev.preventDefault();
+
+    axiosClient
+      .post("/logout")
+      .then(() => {
+        setUser({});
+        setToken(null);
+      });
+  };
+
+  return (
+    <div id="defaulLayout">
+      <header>
+        <div>
+          <div>
+            {userName && <p>Witaj, {userName}</p>}
+          </div>
+          <button href="#" onClick={onLogout} className="loguot">logout</button>
+        </div>
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
+}

@@ -25,6 +25,7 @@ class SwipeControler extends Controller
    
     public function IsMatch(MatchesRequest $request){
     $data = $request->validated();
+    $jest = false;
 
     $match1 = Matchs::where('user1_id', $data['user1_id'])
         ->where('user2_id', $data['user2_id'])
@@ -41,6 +42,9 @@ class SwipeControler extends Controller
                 'user2_id'=>$data['user2_id'],
             ]
         );
+        $jest=true;
     }
+    
+    return response(json_encode($jest));
     }
 }

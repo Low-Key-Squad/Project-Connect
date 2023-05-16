@@ -2,6 +2,8 @@ import { useRef } from "react"
 import { Link } from "react-router-dom"
 import axiosClient from "../axios-client";
 import { useStateContext } from "../contexts/ContextProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Singup() {
@@ -24,12 +26,17 @@ export default function Singup() {
     .then(({data})=>{
       setUser(data.user)
       setToken(data.token)
-      const userId = data.user.id; // Otrzymane user_id z serwera
+      const userId = data.user.id; 
       document.cookie = `user_id=${userId}; path=/;`;
     })
     .catch(err=>{
       console.log(err);
       const response = err.response;
+      const errorMessage = "Wystąpił błąd podczas rejestracji. Proszę sprawdzić czy zostały wypełnione pola i czy hasło zawiera minimum 8 znaków, cyfry i liczby oraz zank specialny.";
+        toast.error(errorMessage, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 5000
+        });
       if (response && response.status==422){
         console.log(response.data.errors);
       }
@@ -51,7 +58,7 @@ export default function Singup() {
           <button className="SignupButton">Sign up</button>
           </form>
           </div>
-         
+          <ToastContainer toastClassName="toast-signup"/>
         </div>
       
     </>

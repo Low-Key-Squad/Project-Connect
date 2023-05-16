@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import React, { useRef, useState } from "react";
 import axiosClient from "../axios-client";
 import UserProfile from "../components/ImageDisplay";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Profile() {
 
@@ -10,7 +13,6 @@ export default function Profile() {
   const manRef = useRef();
   const descriptionRef = useRef();
   const StateRef = useRef();
-  const profRef = useRef();
   const userId = document.cookie
   .split("; ")
   .find((row) => row.startsWith("user_id="))
@@ -26,15 +28,30 @@ export default function Profile() {
     payload.append("gender", manRef.current.checked ? "man" : "woman");
     payload.append("State", StateRef.current.value);
     payload.append("description", descriptionRef.current.value);
-    payload.append("prof", profRef.current.files[0]);
     payload.append("user_id", userId);
     console.log(payload);
     axiosClient.post('/save',payload)
+    .then(response=>{
+      const successMessage = "Zapisano";
+        toast.success(successMessage, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 5000
+        });
+
+    })
     .catch(error => {
       if (error.response) {
         console.log(error.response.data);
+        const errorMessage = "Wystąpił błąd podczas zapisywania zmian. Proszę sprawdzić czy zostały wypełnione pola.";
+        toast.error(errorMessage, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 5000
+        });
+      } 
       }
-    });
+    );
+    
+     
   }
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -120,21 +137,10 @@ export default function Profile() {
                         className="about"
                      
                     />
-                    <h2>Photo</h2>
-                    <input
-                        type="file"
-                        ref={profRef}
-                        accept="image/png, image/jpeg"
-                    />
-                    <div className="photo-container">
-                        
-                    </div>
                 </section>
                 <input type="submit" value="Save" ></input>
             </form>
-        </div>
-        <div className="profile-photo">
-        <UserProfile userId={userId} />
+            <ToastContainer toastClassName="toast-profiles"/>
         </div>
       </>
     )

@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import UserProfile from "../components/ImageDisplay";
 
 export default function Menu() {
+  const userId = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("user_id="))
+  ?.split("=")[1];
+  
   
     return (
       <>
@@ -14,6 +20,8 @@ export default function Menu() {
         <Link to='/swipe'><button className="Swipe ">Swipe</button></Link>
         <Link to='/profile'><button className="Profile ">Profile</button></Link>
         </div>
+        
+                 
         
       </>
     )

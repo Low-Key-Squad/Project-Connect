@@ -27,7 +27,6 @@ class ProfileRequest extends FormRequest
             'age' => ['required', 'int'],
             'description' => ['required', 'string'],
             'State' => ['required', 'string'],
-            'prof' => ['nullable', 'file', 'image'],
             'user_id' => ['required', 'int']
 
         ];

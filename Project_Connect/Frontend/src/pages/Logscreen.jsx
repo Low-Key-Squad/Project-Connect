@@ -2,6 +2,9 @@ import { Link } from "react-router-dom"
 import { useStateContext } from "../contexts/ContextProvider";
 import { useRef } from "react"
 import axiosClient from "../axios-client";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default function Logscreen() {
@@ -26,6 +29,11 @@ export default function Logscreen() {
     .catch(err=>{
       console.log(err);
       const response = err.response;
+      const errorMessage = "Wystąpił błąd podczas logowania.";
+        toast.error(errorMessage, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 5000
+        });
       if (response && response.status==422){
         console.log(response.data.errors);
       }
@@ -46,6 +54,7 @@ export default function Logscreen() {
           <button className="Login-button">Login</button>
           </form>
           </div>
+          <ToastContainer toastClassName="toast-login"/>
         </div>
         
       </>

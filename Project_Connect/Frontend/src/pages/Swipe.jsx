@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosClient from "../axios-client";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Swipe() {
 
@@ -120,12 +122,21 @@ export default function Swipe() {
         }
       })
       axiosClient.post('/ismatch',payload2)
+      .then(response=>{
+        if (response.data === true) {
+          const successMessage = "Match!";
+          toast.success(successMessage, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 5000
+          });
+        }
+        handleNextProfile();
+      })
       .catch(error => {
         if (error.response) {
           console.log(error.response.data);
         }
       })
-      handleNextProfile();
     }
   };
 
@@ -211,19 +222,17 @@ export default function Swipe() {
         {currentProfile && (
         <div>
           <h2>Profile</h2>
-          <p>Photo: {currentProfile.prof}</p>
           <p>Name: {currentProfile.name}</p>
           <p>Age: {currentProfile.age}</p>
           <p>About me: {currentProfile.description}</p>
         </div>
       )}
       {!currentProfile && (
-        <div>
-          <h2 className="No-more-profiles">Brak więcej profili</h2>
-        </div>
+        <div></div>
       )}
       <button className="No-Button" onClick={handleDislike}>Meh</button>
       <button className="Like-Button" onClick={handleLike}>Like</button>
+      <ToastContainer toastClassName="toast-swipe"/>
     </>
   );
         

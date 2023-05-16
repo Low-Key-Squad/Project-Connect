@@ -9,9 +9,8 @@ use App\Models\Chat;
 use App\Models\Para;
 use App\Models\Profiles;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpKernel\Profiler\Profile;
+
 
 class ProfileControler extends Controller
 {
@@ -21,20 +20,7 @@ class ProfileControler extends Controller
     public  function savechange(ProfileRequest $request)
     {
         $data = $request->validated();
-
-        
-
-
-        if ($request->hasFile('prof')) {
-            $file = $request->file('prof');
-
-            
-            $path = $file->store('public/profiles');
-
-            
-            $fileName = $file->getClientOriginalName();
-
-          
+  
             Profiles::updateOrCreate(
                 ['user_id' => $data['user_id']],
                 [
@@ -43,21 +29,12 @@ class ProfileControler extends Controller
                     'gender' => $data['gender'],
                     'State' => $data['State'],
                     'description' => $data['description'],
-                    'prof' => $path,
                 ]
             );
 
-        }
+       
     }
 
-    public function getProfilePhoto(Request $request)
-        {
-                $userId = $request->query('userId');
-                $profile = Profiles::where('user_id', $userId)->first();
-                $profImagePath = $profile ? $profile->prof : null;
-
-                return response($profImagePath);
-        }
 
         public function getProfile(Request $request)
         {
@@ -89,10 +66,16 @@ class ProfileControler extends Controller
     
         $matchIds = Para::where('user1_id', $data['user1_id'])
                 ->orWhere('user2_id', $data['user1_id'])
-                ->get('id',);
-        
-    
+                ->join('profiles', function ($join) {
+                    $join->on('para.user2_id', '=', 'profiles.user_id')
+                         ->orWhere('para.user1_id', '=', 'profiles.user_id');
+                })
+                ->select('para.id', 'profiles.name')
+                ->get();
+
         return response()->json($matchIds);
+    
+
     }
     public function createMessage(Request $request)
     {
@@ -138,5 +121,55 @@ class ProfileControler extends Controller
         $matchId = $request->input('match_id');
 
         return response()->json(['match_id' => $matchId]);
+
     }
+    public function GetName(Request $request)
+    {
+        $userId = $request->route('id');
+        $profile = Profiles::where('user_id', $userId)->first();
+    
+        if (!$profile) {
+            $name = 'NoName';
+            return response()->json(['name' => $name]);
+        }
+    
+        $name = $profile->name;
+    
+        return response()->json(['name' => $name]);
+    }
+
+    public function getUser2(Request $request){
+        $data = $request->validate([
+            'match_id' => ['required', 'int'],
+            'user_id' => ['required', 'int'],
+        ]);
+        $matchId = $data['match_id'];
+        $userId = $data['user_id'];
+
+            $secondUser = Para::where('id', $matchId)
+                ->where(function ($query) use ($userId) {
+                    $query->where('user1_id', '!=', $userId)
+                    ->orWhere('user2_id', '!=', $userId);
+                }) 
+                ->pluck('user2_id')
+                ->first();
+        
+
+        return response()->json($secondUser);
+
+    }
+    public function Delete(Request $request) {
+        $id = $request->input('id');
+    
+        Chat::where('match_id', $id)->delete();
+        $deleted = Para::where('id', $id)->delete();
+    
+        if ($deleted) {
+            return response()->json(['message' => 'Match deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Match not found'], 404);
+        }
+    }
+
+
 }

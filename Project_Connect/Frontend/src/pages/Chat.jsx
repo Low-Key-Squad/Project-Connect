@@ -8,7 +8,7 @@ export default function Chat() {
   const [message, setMessage] = useState('');
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [matches, setMatches] = useState([]);
-  const [reciverId,setReciver]=useState([]);
+  const [user2Id,setuser2Id]=useState(null);
   const userId = document.cookie
     .split('; ')
     .find((row) => row.startsWith('user_id='))
@@ -23,14 +23,18 @@ export default function Chat() {
       user1_id: userId,
     };
     axiosClient.post('/matches', payload)
-    .catch(error => {
-      console.error(error);
-    })
       .then(response => {
-        setMatches(response.data);
+        console.log(response.data); 
+        const matchData = response.data.map(match => ({
+          ...match,
+          name: match.name ? match.name : 'Unknown User',
+        }));
+        setMatches(matchData);
+      })
+      .catch(error => {
+        console.error(error);
       });
   };
-
   const getChatHistory = () => {
     const config = {
       params: {
@@ -53,7 +57,7 @@ export default function Chat() {
     axiosClient.post('/createmessage', {
       match_id: selectedMatch,
       sender_id: userId,
-      receiver_id: 2,
+      receiver_id: user2Id,
       message: message,
     }).catch(error => {
       console.error(error);
@@ -74,11 +78,58 @@ export default function Chat() {
     })
     .catch(error => {
       console.error(error);
-    })
+    });
+  
     setSelectedMatch(matchId);
-    getChatHistory(matchId);
   };
+  
+  useEffect(() => {
+    if (selectedMatch) {
+      getChatHistory(selectedMatch);
+  
+      const payload3 = {
+        match_id: selectedMatch,
+        user_id: userId,
+      };
+  
+      axiosClient.post('/user2', payload3)
+        .then(response => {
+          setuser2Id(response.data);
+          console.log(user2Id);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  }, [selectedMatch]);
+  useEffect(() => {
+    
+    const refreshInterval = setInterval(() => {
+      if (selectedMatch) {
+        getChatHistory(selectedMatch);
+      }
+    }, 5000);
 
+    return () => {
+      clearInterval(refreshInterval);
+    };
+  }, [selectedMatch]);
+
+  const deleteMatch = () => {
+    if (window.confirm('Czy na pewno chcesz usunąć parę?')) {
+      axiosClient.post('/deletematch', {
+        id: selectedMatch,
+      })
+      .then(response => {
+        console.log('Para została usunięta.');
+        setSelectedMatch(null);
+        getMatchList();
+        })
+        .catch(error => {
+        console.error(error);
+        });
+        }
+    };
   return (
     <div>
       <Link to="/menu">
@@ -107,10 +158,10 @@ export default function Chat() {
            {chatHistory.map((chat, index) => (
               <div key={index}>
                 {chat.sender_id !== userId ? (
-                      <span>{chat.name}: </span>
-                    ) : (
-                      <span>Ty: </span>
-                    )}
+                <span>{chat.name}: </span>
+              ) : (
+                <span>Ty: </span>
+              )}
                 {chat.message}
               </div>
             ))}
@@ -120,6 +171,7 @@ export default function Chat() {
             <input type="text" value={message} onChange={e => setMessage(e.target.value)} />
             <button onClick={sendMessage}>Wyślij</button>
           </div>
+          <button onClick={deleteMatch}>Usuń parę</button>
         </>
       )}
     </div>
