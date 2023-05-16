@@ -12,9 +12,8 @@ export default function Menu() {
     return (
       <>
         <div className="Menu">
-          <img src="" className="MenuLogo"/>       
-
-        </div>
+          <img src="/public/white.png" className="MenuLogo"/>       
+          </div>
         <div className="buttons-menu">
         <Link to='/chat'><button className="Chat ">Chat</button></Link>
         <Link to='/swipe'><button className="Swipe ">Swipe</button></Link>
