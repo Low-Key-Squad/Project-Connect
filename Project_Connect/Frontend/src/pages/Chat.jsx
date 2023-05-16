@@ -116,7 +116,6 @@ export default function Chat() {
   }, [selectedMatch]);
 
   const deleteMatch = () => {
-    if (window.confirm('Czy na pewno chcesz usunąć parę?')) {
       axiosClient.post('/deletematch', {
         id: selectedMatch,
       })
@@ -128,7 +127,7 @@ export default function Chat() {
         .catch(error => {
         console.error(error);
         });
-        }
+        
     };
   return (
       <div>
