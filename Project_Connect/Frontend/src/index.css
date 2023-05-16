@@ -185,6 +185,15 @@ input {
     justify-content: center;
   }
   
+  .MenuLogo{
+    width: 20%;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+
   .menu-button {
     margin: 0 10px;
     background-color: #fff;
