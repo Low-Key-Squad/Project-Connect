@@ -15,12 +15,19 @@ export default function Swipe() {
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
   const [currentProfile, setCurrentProfile] = useState(null);
   const [profiles, setProfiles] = useState([]);
+  const [isVisible, setIsVisible] = useState(true);
   const userId = document.cookie
   .split("; ")
   .find((row) => row.startsWith("user_id="))
   ?.split("=")[1];
 
   
+  
+    const handleButtonClick = () => {
+      setIsVisible(false);
+    };
+  
+
   
   const shuffle = (array) => {
     const shuffledArray = [...array];
@@ -147,6 +154,7 @@ export default function Swipe() {
         <div>
         <Link to='/menu'><button className='Menu-button'>Menu</button></Link>
         </div>
+        {isVisible &&(
         <form className="Form-Swipe" onSubmit={onSubmit}>
         <label>Show Me:</label>
         <br></br>
@@ -218,7 +226,9 @@ export default function Swipe() {
                       </select>
                         </div>
                         <button className="Find-button" onClick={fetchProfiles}>Find</button>
-        </form>
+                        <button className="Find-button" onClick={handleButtonClick}>Hide</button>
+        </form>)}
+
         {currentProfile && (
         <div>
           <h2>Profile</h2>
