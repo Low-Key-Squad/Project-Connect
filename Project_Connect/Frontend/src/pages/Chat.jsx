@@ -131,49 +131,52 @@ export default function Chat() {
         }
     };
   return (
-    <div>
-      <Link to="/menu">
-        <button className='Menu-button'>Menu</button>
-      </Link>
-      <h2>Chat</h2>
-
       <div>
-        <p>Wybierz czat:</p>
-        <div>
-          {matches.map(match => (
-            <button
-              key={match.id}
-              onClick={() => handleMatchClick(match.id)}
-              className={selectedMatch === match.id ? 'selected' : ''}
-            >
-              {match.name}
-            </button>
-          ))}
+        <Link to="/menu">
+          <button className="Menu-button">Menu</button>
+        </Link>
+        <h2>Chat</h2>
+        <div name="CHAT">
+          <div className="Chat-container">
+            <p>Wybierz czat:</p>
+            <div>
+              {matches.map(match => (
+                <button
+                  key={match.id}
+                  onClick={() => handleMatchClick(match.id)}
+                  className={selectedMatch === match.id ? 'selected' : ''}
+                  name="match-button"
+                >
+                  {match.name}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="logchat">
+            {selectedMatch && (
+              <>
+                <div className="message">
+                  {chatHistory.map((chat, index) => (
+                    <div key={index}>
+                      {chat.sender_id !== userId ? (
+                        <span>{chat.name}: </span>
+                      ) : (
+                        <span>Ty: </span>
+                      )}
+                      {chat.message}
+                    </div>
+                  ))}
+                </div>
+    
+                <div className="input-container">
+                  <input type="text" value={message} onChange={e => setMessage(e.target.value)} />
+                  <button onClick={sendMessage} name="send-message-button">Wyślij</button>
+                </div>
+                <button onClick={deleteMatch}>Usuń parę</button>
+              </>
+            )}
+          </div>
         </div>
       </div>
-
-      {selectedMatch && (
-        <>
-           <div name="message">
-           {chatHistory.map((chat, index) => (
-              <div key={index}>
-                {chat.sender_id !== userId ? (
-                <span>{chat.name}: </span>
-              ) : (
-                <span>Ty: </span>
-              )}
-                {chat.message}
-              </div>
-            ))}
-          </div>
-           
-          <div>
-            <input type="text" value={message} onChange={e => setMessage(e.target.value)} />
-            <button onClick={sendMessage}>Wyślij</button>
-          </div>
-          <button onClick={deleteMatch}>Usuń parę</button>
-        </>
-      )}
-    </div>
-  );
+    );
 }
